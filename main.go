@@ -53,7 +53,7 @@ func selectRandomImages(folderPath string) ([]string, error) {
     if err != nil {
         return nil, err
     }
-    
+
     // Seleccionar 4 imágenes aleatorias
     rand.Seed(time.Now().UnixNano())
     rand.Shuffle(len(images), func(i, j int) { images[i], images[j] = images[j], images[i] })
@@ -66,23 +66,23 @@ func selectRandomImages(folderPath string) ([]string, error) {
 // Manejar la página principal
 func handler(w http.ResponseWriter, r *http.Request) {
     tmpl := template.Must(template.ParseFiles("index.html"))
-    
+
     // Usar el directorio de imágenes almacenado globalmente
     selectedImages, err := selectRandomImages(imageDirectory)
     if err != nil {
         http.Error(w, "Error al seleccionar imágenes", http.StatusInternalServerError)
         return
     }
-    
+
     // Convertir imágenes a base64
     base64Images, err := encodeImagesToBase64(selectedImages)
     if err != nil {
         http.Error(w, "Error al procesar imágenes", http.StatusInternalServerError)
         return
     }
-    
+
     data := ImageData{Images: base64Images}
-    
+
     // Renderizar la plantilla HTML
     err = tmpl.Execute(w, data)
     if err != nil {
@@ -108,6 +108,10 @@ func main() {
     var port string
     fmt.Scanln(&port)
 
+    // Manejar archivos estáticos (imágenes, íconos, etc.)
+    http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+    // Manejar la página principal
     http.HandleFunc("/", handler)
 
     fmt.Printf("Servidor iniciado en http://localhost:%s\n", port)
