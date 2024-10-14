@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computación en la Nube</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        /* Sección 1: Título */
+        .section-title {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title h1 {
+            font-size: 36px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title img {
+            margin-right: 10px;
+            width: 50px;
+        }
+
+        .logo {
+            width: 100px; /* Espacio reservado para logo más grande */
+        }
+
+        /* Sección 2: Título e imágenes */
+        .section-images {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0;
+        }
+
+        .section-images h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            height: 100%;
+            gap: 10px;
+        }
+
+        .carousel img {
+            width: 20%; /* Tamaño más grande de las imágenes */
+            height: auto;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: transform 0.5s, opacity 0.5s, box-shadow 0.5s;
+            cursor: pointer;
+        }
+
+        .carousel img:hover {
+            transform: scale(1.2);
+            opacity: 1;
+            box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Modal para mostrar la imagen ampliada */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Sección 3: Autor e institución */
+        .section-author {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .section-author p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sección 1: Título -->
+    <div class="section-title">
+        <img class="logo" src="./iconos/nubes.png" alt="LogoNube"> <!-- Espacio para el logo -->
+        <h1>
+            <!--img src="/iconos/nubes.ico" alt="Icono nube"-->
+            Computación en la Nube
+        </h1>
+    </div>
+
+    <!-- Sección 2: Título e imágenes -->
+    <div class="section-images">
+        <h2>Hola Golang</h2>
+        <div class="carousel">
+            {{range .Images}}
+            <img src="data:image/png;base64,{{.}}" alt="Imagen procesada" onclick="openModal(this)">
+            {{end}}
+        </div>
+    </div>
+
+    <!-- Modal para la imagen ampliada -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" alt="Imagen ampliada">
+    </div>
+
+    <!-- Sección 3: Autor e institución -->
+    <div class="section-author">
+        <p>Autor: Tu Nombre</p>
+        <p>Institución: Nombre de la Institución</p>
+    </div>
+
+    <script>
+        // Abrir el modal con la imagen ampliada
+        function openModal(image) {
+            var modal = document.getElementById('imageModal');
+            var modalImg = document.getElementById('modalImage');
+            modal.style.display = "flex";
+            modalImg.src = image.src;
+        }
+
+        // Cerrar el modal
+        function closeModal() {
+            var modal = document.getElementById('imageModal');
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
