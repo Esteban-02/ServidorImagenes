@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background-color: white;
         }
 
@@ -22,69 +22,68 @@
         
         /* Sección 1: Título */
         .section-title {
-            background-color: #333;
+            background-color: #000000;
             color: white;
             padding: 20px;
             display: flex;
-            justify-content: flex-start; /* Alinea los elementos desde el inicio */
-            align-items: center;
-            gap: 20px; /* Añade espacio entre los elementos */
+            justify-content: flex-start;
+            align-items: center;    
+            gap: 20px;
         }
 
         .section-title h1 {
-            font-size: 36px;
+            font-size: 25px;
             margin: 0;
         }
 
-        .section-title img {
-            margin-right: 10px;
-            width: 50px;
-        }
-
-        .logo {
-            width: 100px; /* Espacio reservado para logo más grande */
+        /* Aumentamos el tamaño del logo */
+        .section-title img {    
+            margin-right: 0px;
+            width: 100px; /* Ancho más grande */
+            height: 60px; /* Alto más grande */
         }
 
         .hostname {
             background-color: red;
             color: white;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: bold;
             padding: 10px;
             border-radius: 8px;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-            margin-left: auto; /* Empuja el nombre del host hacia la derecha */
+            margin-left: auto; 
         }
 
         /* Sección 2: Título e imágenes */
         .section-images {
             background-color: white;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
-            padding: 50px 0;
+            padding: 30px 0;
         }
 
         .section-images h2 {
-            font-size: 30px;
-            margin-bottom: 20px;
+            font-size: 50px;
+            margin-bottom: 50px;
         }
 
+        /* Aumentamos el tamaño de las imágenes del carrusel */
         .carousel {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 80%;
-            height: 100%;
-            gap: 10px;
+            width: 70%;
+            height: 90%;
+            gap: 20px; /* Más espacio entre las imágenes */
         }
 
         .carousel img {
-            width: 20%;
+            width: 30%; /* Aumentamos el tamaño de las imágenes */
             height: auto;
             object-fit: cover;
-            opacity: 0.7;
+            opacity: 0.8;
             transition: transform 0.5s, opacity 0.5s, box-shadow 0.5s;
             cursor: pointer;
         }
@@ -95,10 +94,6 @@
             box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.6);
         }
 
-        .container {
-            position: relative;
-        }
-        
         /* Modal para mostrar la imagen ampliada */
         .modal {
             display: none;
@@ -122,14 +117,14 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            color: white;
-            font-size: 30px;
+            color: rgb(255, 255, 255);
+            font-size: 50px;
             cursor: pointer;
         }
 
-        /* Sección 3: Autor e institución */
-        .section-author {
-            background-color: #000;
+         /* Sección 3: Autor e institución con degradado */
+         .section-author {
+            background: linear-gradient(to bottom, rgb(107, 107, 107), rgb(66, 66, 66)); /* Degradado de blanco a negro */
             color: white;
             text-align: center;
             padding: 20px;
@@ -151,9 +146,9 @@
 <body>
     <!-- Sección del título con el nombre del host -->
     <div class="section-title">
-        <img class="logo" src="static/iconos/Logo_sfnd.png" alt="30"> <!-- Espacio para el logo -->
+        <img class="logo" src="static/iconos/LogoNube.png" alt="Logo"> <!-- Espacio para el logo -->
         <h1>Servidor de Imagenes</h1>
-        <div class="hostname">{{.Hostname}}</div> <!-- Aquí se mostrará el nombre del host -->
+        <div class="hostname">{{.Hostname}}</div>
     </div>
 
     <!-- Sección 2: Título e imágenes -->
@@ -174,8 +169,9 @@
 
     <!-- Sección 3: Autor e institución -->
     <div class="section-author">
-        <p>Autor: Tu Nombre</p>
-        <p>Institución: Nombre de la Institución</p>
+        <p>Autor: Esteban Ortega</p>
+        <p>Universidad del Quindio</p>
+        <p>Computacion en la nube</p>
     </div>
 
     <script>
