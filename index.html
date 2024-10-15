@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computación en la Nube</title>
+    <title>Servidor de imagenes</title>
     <style>
         body {
             margin: 0;
@@ -11,22 +11,29 @@
             background-color: white;
         }
 
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            background-color: #333;
+            color: white;
+        }
+        
         /* Sección 1: Título */
         .section-title {
             background-color: #333;
             color: white;
-            text-align: center;
             padding: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* Alinea los elementos desde el inicio */
             align-items: center;
+            gap: 20px; /* Añade espacio entre los elementos */
         }
 
         .section-title h1 {
             font-size: 36px;
             margin: 0;
-            display: flex;
-            align-items: center;
         }
 
         .section-title img {
@@ -36,6 +43,17 @@
 
         .logo {
             width: 100px; /* Espacio reservado para logo más grande */
+        }
+
+        .hostname {
+            background-color: red;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            margin-left: auto; /* Empuja el nombre del host hacia la derecha */
         }
 
         /* Sección 2: Título e imágenes */
@@ -63,10 +81,10 @@
         }
 
         .carousel img {
-            width: 20%; /* Tamaño más grande de las imágenes */
+            width: 20%;
             height: auto;
             object-fit: cover;
-            opacity: 0.6;
+            opacity: 0.7;
             transition: transform 0.5s, opacity 0.5s, box-shadow 0.5s;
             cursor: pointer;
         }
@@ -77,6 +95,10 @@
             box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.6);
         }
 
+        .container {
+            position: relative;
+        }
+        
         /* Modal para mostrar la imagen ampliada */
         .modal {
             display: none;
@@ -127,13 +149,11 @@
     </style>
 </head>
 <body>
-    <!-- Sección 1: Título -->
+    <!-- Sección del título con el nombre del host -->
     <div class="section-title">
-        <img class="logo" src="static/iconos/nubes.ico" alt="LogoNube"> <!-- Espacio para el logo -->
-        <h1>
-            <!--img src="/iconos/nubes.ico" alt="Icono nube"-->
-            Computación en la Nube
-        </h1>
+        <img class="logo" src="static/iconos/Logo_sfnd.png" alt="30"> <!-- Espacio para el logo -->
+        <h1>Servidor de Imagenes</h1>
+        <div class="hostname">{{.Hostname}}</div> <!-- Aquí se mostrará el nombre del host -->
     </div>
 
     <!-- Sección 2: Título e imágenes -->

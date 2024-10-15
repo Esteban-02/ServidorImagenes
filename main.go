@@ -15,9 +15,10 @@ import (
     "time"
 )
 
-// Estructura para pasar las imágenes al template HTML
-type ImageData struct {
-    Images []string
+// Estructura para pasar las imágenes y el nombre del host al template HTML
+type PageData struct {
+    Images   []string
+    Hostname string
 }
 
 // Variable global para almacenar el directorio de imágenes
@@ -67,6 +68,12 @@ func selectRandomImages(folderPath string) ([]string, error) {
 func handler(w http.ResponseWriter, r *http.Request) {
     tmpl := template.Must(template.ParseFiles("index.html"))
 
+    // Obtener el nombre del host
+    hostname, err := os.Hostname()
+    if err != nil {
+        hostname = "Desconocido"
+    }
+
     // Usar el directorio de imágenes almacenado globalmente
     selectedImages, err := selectRandomImages(imageDirectory)
     if err != nil {
@@ -81,7 +88,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    data := ImageData{Images: base64Images}
+    // Pasar los datos (imágenes y nombre del host) al template
+    data := PageData{
+        Images:   base64Images,
+        Hostname: hostname,
+    }
 
     // Renderizar la plantilla HTML
     err = tmpl.Execute(w, data)
