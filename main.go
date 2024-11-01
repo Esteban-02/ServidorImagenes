@@ -105,11 +105,13 @@ func main() {
 	// Usar sync.Once para asegurarnos que el directorio se pida solo una vez
 	once.Do(func() {
 		// Solicitar ruta de imágenes al usuario
-		fmt.Println("Ingresa la ruta de la carpeta con imágenes (jpg, jpeg, png):")
-		fmt.Scanln(&imageDirectory)
-		//
-		imageDirectory = "home/asus/Walpaper"
 
+		//fmt.Println("Ingresa la ruta de la carpeta con imágenes (jpg, jpeg, png):")
+
+		//fmt.Scanln(&imageDirectory)
+		//
+		imageDirectory = "/home/asus/Walpaper"
+		fmt.Println(imageDirectory)
 		// Validar que el directorio exista
 		if _, err := os.Stat(imageDirectory); os.IsNotExist(err) {
 			log.Fatalf("La carpeta especificada no existe: %s", imageDirectory)
@@ -120,7 +122,7 @@ func main() {
 	//fmt.Println("Ingresa el puerto de ejecución:")
 	var port string
 	//fmt.Scanln(&port)
-	port = "8000"
+	port = "8085"
 	// Manejar archivos estáticos (imágenes, íconos, etc.)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
